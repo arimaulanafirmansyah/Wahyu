@@ -4,7 +4,7 @@ import 'dotenv/config'
 const endpoint = process.env.API_ENDPOINT
 
 export const checkAccountFF = async (req, res) => {
-    const body = `voucherPricePoint.id=8050&voucherPricePoint.price=1000.0&voucherPricePoint.variablePrice=0&user.userId=${req.params.id}&voucherTypeName=FREEFIRE&shopLang=id_ID`
+    const body = `voucherPricePoint.id=20501&voucherPricePoint.price=2000.0&voucherPricePoint.variablePrice=0&user.userId=${req.params.id}&voucherTypeName=FREEFIRE&shopLang=id_ID`
     
     try {
         const ff = await axios.post(endpoint,body, {
