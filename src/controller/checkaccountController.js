@@ -3,6 +3,41 @@ import 'dotenv/config'
 
 const endpoint = process.env.API_ENDPOINT
 const endpoint2 = process.env.API_ENDPOINT2
+const amrcode = process.env.AMRCODE
+
+export const checkAccountPUBG = async (req, res) => {
+    const body = `api_key=UBDcDDWXMgnW2ELKfZfUsPzFOkEEGuEzi1vSa6kxFYEvuNQMG8iXO4zMS0Wr&target=${req.params.id}&type=pubg`
+    
+    try {
+        const pubg = await axios.post(amrcode,body, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        })
+        const pubgresult = pubg.data
+        console.log(pubgresult)
+        if (pubgresult.errorCode === 12) {
+            res.status(404).json({
+                status: 404,
+                message: pubgresult.errorMsg
+            })
+        }else {
+            res.status(200).json({
+                status: 200,
+                  data: {
+                    nickname: pubgresult.data.nick,
+                    game: 'PUBG Mobile'
+                  }
+            })
+        }
+
+    } catch (error) {
+        res.status(504).json({
+            status: 504,
+            message: 'Error Gateway Timeout'
+        })
+    }
+}
 
 export const checkAccountFF = async (req, res) => {
     const body = `voucherPricePoint.id=8050&voucherPricePoint.price=1000.0&voucherPricePoint.variablePrice=0&user.userId=${req.params.id}&voucherTypeName=FREEFIRE&shopLang=id_ID`
