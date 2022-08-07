@@ -3,10 +3,10 @@ import 'dotenv/config'
 
 const endpoint = process.env.API_ENDPOINT
 const endpoint2 = process.env.API_ENDPOINT2
-const amrcode = process.env.AMRCODE
+const amfcode = process.env.AMFCODE
 
 export const checkAccountPUBG = async (req, res) => {
-    const body = `api_key=UBDcDDWXMgnW2ELKfZfUsPzFOkEEGuEzi1vSa6kxFYEvuNQMG8iXO4zMS0Wr&target=${req.params.id}&type=pubg`
+    const body = `id=${req.params.id}`
     
     try {
         const pubg = await axios.post(amrcode,body, {
