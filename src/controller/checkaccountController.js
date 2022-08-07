@@ -2,27 +2,28 @@ import axios from 'axios'
 import 'dotenv/config'
 
 const endpoint = process.env.API_ENDPOINT
+const endpoint2 = process.env.API_ENDPOINT2
 
 export const checkAccountFF = async (req, res) => {
-    const body = `voucherPricePoint.id=20501&voucherPricePoint.price=2000.0&voucherPricePoint.variablePrice=0&user.userId=${req.params.id}&voucherTypeName=FREEFIRE&shopLang=id_ID`
-    
+    const body = `voucherPricePoint.id=8050&voucherPricePoint.price=1000.0&voucherPricePoint.variablePrice=0&user.userId=${req.params.id}&voucherTypeName=FREEFIRE&shopLang=id_ID`
+
     try {
-        const ff = await axios.post(endpoint,body, {
+        const ff = await axios.post(endpoint, body, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         })
         const ffresult = ff.data
-        
+
         if (ffresult.errorCode === 12) {
             res.status(404).json({
                 status: 404,
                 message: ffresult.errorMsg
             })
-        }else {
+        } else {
             res.status(200).json({
                 status: 200,
-                response: {
+                data: {
                     game: 'Free Fire',
                     id: ffresult.confirmationFields.userId,
                     name: ffresult.confirmationFields.roles[0].role,
@@ -39,11 +40,45 @@ export const checkAccountFF = async (req, res) => {
     }
 }
 
+export const checkAccountHDI = async (req, res) => {
+    const body = `user_id=${req.params.id}`
+
+    try {
+        const hdi = await axios.post(endpoint2, body, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        })
+        const hdiresult = hdi.data
+        console.log(hdiresult)
+        if (hdiresult.errorCode === -103) {
+            res.status(404).json({
+                status: 404,
+                message: hdiresult.errorMsg
+            })
+        } else {
+            res.status(200).json({
+                status: 200,
+                result: {
+                    username: hdiresult.username,
+                    game: 'Domino Higgs'
+                }
+            })
+        }
+    } catch (error) {
+        res.status(504).json({
+            status: 504,
+            message: 'Error Gateway Timeout'
+        })
+    }
+
+}
+
 export const checkAccountML = async (req, res) => {
     const body = `voucherPricePoint.id=4150&voucherPricePoint.price=1579.0&voucherPricePoint.variablePrice=0&user.userId=${req.params.id}&user.zoneId=${req.params.zoneid}&voucherTypeName=MOBILE_LEGENDS&shopLang=id_ID`
-    
+
     try {
-        const ml = await axios.post(endpoint,body, {
+        const ml = await axios.post(endpoint, body, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
@@ -54,7 +89,7 @@ export const checkAccountML = async (req, res) => {
                 status: 404,
                 message: 'Id not Found'
             })
-        }else {
+        } else {
             res.status(200).json({
                 status: 200,
                 response: {
@@ -75,9 +110,9 @@ export const checkAccountML = async (req, res) => {
 
 export const checkAccountAOV = async (req, res) => {
     const body = `voucherPricePoint.id=7946&voucherPricePoint.price=10000.0&voucherPricePoint.variablePrice=0&user.userId=${req.params.id}&voucherTypeName=AOV&shopLang=id_ID`
-    
+
     try {
-        const aov = await axios.post(endpoint,body, {
+        const aov = await axios.post(endpoint, body, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
@@ -88,7 +123,7 @@ export const checkAccountAOV = async (req, res) => {
                 status: 404,
                 message: 'Id not Found'
             })
-        }else {
+        } else {
             res.status(200).json({
                 status: 200,
                 response: {
@@ -109,9 +144,9 @@ export const checkAccountAOV = async (req, res) => {
 
 export const checkAccountCOD = async (req, res) => {
     const body = `voucherPricePoint.id=46114&voucherPricePoint.price=5000.0&voucherPricePoint.variablePrice=0&user.userId=${req.params.id}&voucherTypeName=CALL_OF_DUTY&shopLang=id_ID`
-    
+
     try {
-        const cod = await axios.post(endpoint,body, {
+        const cod = await axios.post(endpoint, body, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
@@ -122,7 +157,7 @@ export const checkAccountCOD = async (req, res) => {
                 status: 404,
                 message: 'Id not Found'
             })
-        }else {
+        } else {
             res.status(200).json({
                 status: 200,
                 response: {
@@ -143,9 +178,9 @@ export const checkAccountCOD = async (req, res) => {
 
 export const checkAccountSM = async (req, res) => {
     const body = `voucherPricePoint.id=256513&voucherPricePoint.price=16000.0&voucherPricePoint.variablePrice=0&user.userId=${req.params.id}&user.zoneId=global-release&voucherTypeName=SAUSAGE_MAN&shopLang=id_ID`
-    
+
     try {
-        const sm = await axios.post(endpoint,body, {
+        const sm = await axios.post(endpoint, body, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
@@ -156,7 +191,7 @@ export const checkAccountSM = async (req, res) => {
                 status: 404,
                 message: 'Id not Found'
             })
-        }else {
+        } else {
             res.status(200).json({
                 status: 200,
                 response: {
@@ -183,30 +218,30 @@ export const checkAccountGI = async (req, res) => {
 
     if (req.params.id.startsWith(6)) {
         zoneData = {
-            zoneId : 'os_usa',
+            zoneId: 'os_usa',
             server: 'America'
         }
-    }else if (req.params.id.startsWith(7)) {
+    } else if (req.params.id.startsWith(7)) {
         zoneData = {
             zoneId: 'os_euro',
             server: 'Europe'
         }
-    }else if (req.params.id.startsWith(8)) {
+    } else if (req.params.id.startsWith(8)) {
         zoneData = {
             zoneId: 'os_asia',
             server: 'Asia'
         }
-    }else if (req.params.id.startsWith(9)) {
+    } else if (req.params.id.startsWith(9)) {
         zoneData = {
             zoneId: 'os_cht',
             server: 'SAR (Taiwan, Hong-Kong, Macao)'
         }
     }
-    
+
     const body = `voucherPricePoint.id=116054&voucherPricePoint.price=16000.0&voucherPricePoint.variablePrice=0&user.userId=${req.params.id}&user.zoneId=${zoneData.zoneId}&voucherTypeName=GENSHIN_IMPACT&shopLang=id_ID`
-    
+
     try {
-        const gi = await axios.post(endpoint,body, {
+        const gi = await axios.post(endpoint, body, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
@@ -217,7 +252,7 @@ export const checkAccountGI = async (req, res) => {
                 status: 404,
                 message: 'Id not Found'
             })
-        }else {
+        } else {
             res.status(200).json({
                 status: 200,
                 response: {
