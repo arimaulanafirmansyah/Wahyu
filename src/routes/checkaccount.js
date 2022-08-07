@@ -1,8 +1,8 @@
 import express from 'express'
-import { checkAccountAOV, checkAccountCOD, checkAccountFF, checkAccountHDI, checkAccountGI, checkAccountML, checkAccountSM } from '../controller/checkaccountController.js'
+import { checkAccountAOV, checkAccountCOD, checkAccountPUBG, checkAccountFF, checkAccountHDI, checkAccountGI, checkAccountML, checkAccountSM } from '../controller/checkaccountController.js'
 
 const checkaccount = express()
-
+checkaccount.get('/pubg/:id', checkAccountPUBG)
 checkaccount.get('/ff/:id', checkAccountFF)
 checkaccount.get('/hdi/:id', checkAccountHDI)
 checkaccount.get('/ml/:zoneid/:id', checkAccountML)
