@@ -24,10 +24,7 @@ export const checkAccountPUBG = async (req, res) => {
         }else {
             res.status(200).json({
                 status: 200,
-                  data: {
-                    nickname: pubgresult.data.nick,
-                    game: 'PUBG Mobile'
-                  }
+                  data: pubgresult
             })
         }
 
