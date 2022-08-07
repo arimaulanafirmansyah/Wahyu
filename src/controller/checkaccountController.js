@@ -9,7 +9,7 @@ export const checkAccountPUBG = async (req, res) => {
     const body = `id=${req.params.id}`
     
     try {
-        const pubg = await axios.post(amrcode,body, {
+        const pubg = await axios.get(amfcode,body, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
