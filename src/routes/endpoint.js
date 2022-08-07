@@ -7,6 +7,7 @@ export const endpoint = app.get('/', (req,res) => {
         status: 200,
         message: 'Welcome to Profile Game Checker API 👋',
         documentation: 'https://documenter.getpostman.com/view/13740929/VUjMnkXK',
+        donate: 'https://saweria.co/arimaulana',
         author: '@amfcode_'
     })
 })
