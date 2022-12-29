@@ -6,10 +6,10 @@ const endpoint2 = process.env.API_ENDPOINT2
 const amfcode = process.env.AMFCODE
 
 export const checkAccountPUBG = async (req, res) => {
-    const body = `id=${req.params.id}`
+    const body = `api_key=UBDcDDWXMgnW2ELKfZfUsPzFOkEEGuEzi1vSa6kxFYEvuNQMG8iXO4zMS0Wr&target=${req.params.id}&type=pubg`
     
     try {
-        const pubg = await axios.get(amfcode,body, {
+        const pubg = await axios.post(amfcode,body, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
@@ -37,7 +37,7 @@ export const checkAccountPUBG = async (req, res) => {
 }
 
 export const checkAccountFF = async (req, res) => {
-    const body = `voucherPricePoint.id=8050&voucherPricePoint.price=1000.0&voucherPricePoint.variablePrice=0&user.userId=${req.params.id}&voucherTypeName=FREEFIRE&shopLang=id_ID`
+    const body = `voucherPricePoint.id=8128&voucherPricePoint.price=100000.0&voucherPricePoint.variablePrice=0&user.userId=${req.params.id}&voucherTypeName=FREEFIRE&voucherTypeId=17&gvtId=33&shopLang=id_ID`
 
     try {
         const ff = await axios.post(endpoint, body, {
@@ -46,7 +46,7 @@ export const checkAccountFF = async (req, res) => {
             }
         })
         const ffresult = ff.data
-
+            console.log(ffresult)
         if (ffresult.errorCode === 12) {
             res.status(404).json({
                 status: 404,
@@ -107,7 +107,7 @@ export const checkAccountHDI = async (req, res) => {
 }
 
 export const checkAccountML = async (req, res) => {
-    const body = `voucherPricePoint.id=4150&voucherPricePoint.price=1579.0&voucherPricePoint.variablePrice=0&email=arimasdjaksd%40gmail.com&userVariablePrice=0&user.userId=${req.params.id}&user.zoneId=${req.params.zoneId}&voucherTypeName=MOBILE_LEGENDS&shopLang=id_ID`
+    const body = `voucherPricePoint.id=4156&voucherPricePoint.price=24254.0&voucherPricePoint.variablePrice=0&user.userId=${req.params.id}&user.zoneId=${req.params.zoneid}&voucherTypeName=MOBILE_LEGENDS&voucherTypeId=5&gvtId=9&shopLang=id_ID`
       try {
         const ml = await axios.post(endpoint, body, {
             headers: {
@@ -115,6 +115,7 @@ export const checkAccountML = async (req, res) => {
             }
         })
         const mlresult = ml.data
+        console.log(mlresult)
         if (mlresult.errorCode === 1003) {
             res.status(404).json({
                 status: 404,
