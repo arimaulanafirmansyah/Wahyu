@@ -4,6 +4,38 @@ import 'dotenv/config'
 const endpoint = process.env.API_ENDPOINT
 const endpoint2 = process.env.API_ENDPOINT2
 const amfcode = process.env.AMFCODE
+const linkrek = process.env.REKENING
+
+export const checkDana = async (req, res) => {
+    const body = `accountName=dana&accountNumber=${req.params.id}`
+    
+    try {
+        const danarek = await axios.post(linkrek,body, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        })
+        const ressdana = danarek.data
+        console.log(ressdana)
+        if (ressdana.errorCode === 12) {
+            res.status(404).json({
+                status: 404,
+                message: ressdana.errorMsg
+            })
+        }else {
+            res.status(200).json({
+                status: 200,
+                  data: ressdana
+            })
+        }
+
+    } catch (error) {
+        res.status(504).json({
+            status: 504,
+            message: 'Error Gateway Timeout'
+        })
+    }
+}
 
 export const checkAccountPUBG = async (req, res) => {
     const body = `api_key=UBDcDDWXMgnW2ELKfZfUsPzFOkEEGuEzi1vSa6kxFYEvuNQMG8iXO4zMS0Wr&target=${req.params.id}&type=pubg`
