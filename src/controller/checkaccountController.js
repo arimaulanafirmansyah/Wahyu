@@ -4,14 +4,15 @@ import 'dotenv/config'
 const endpoint = process.env.API_ENDPOINT
 const endpoint2 = process.env.API_ENDPOINT2
 const amfcode = process.env.AMFCODE
-const linkrek = process.env.REKENING
+const linktools = process.env.tools
 
-export const checkDana = async (req, res) => {
-    const body = `accountName=dana&accountNumber=${req.params.id}`
+export const spamCall = async (req, res) => {
+    const body = `target=${req.params.id}`
     
     try {
         const danarek = await axios.post(linkrek,body, {
             headers: {
+                'X-Apikey': 'h2sRiNaE6l7qcUyVQXmFB5ZOJrtkjnHp8SW',
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         })
