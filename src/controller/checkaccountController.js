@@ -9,7 +9,6 @@ const linktools = process.env.TOOLS
 export const spamCall = async (req, res) => {
     const body = `target=${req.params.id}`
     
-    try {
         const danarek = await axios.post(linkrek,body, {
             headers: {
                 'X-Apikey': 'h2sRiNaE6l7qcUyVQXmFB5ZOJrtkjnHp8SW',
@@ -29,13 +28,6 @@ export const spamCall = async (req, res) => {
                   data: ressdana
             })
         }
-
-    } catch (error) {
-        res.status(504).json({
-            status: 504,
-            message: 'Error Gateway Timeout'
-        })
-    }
 }
 
 export const checkAccountPUBG = async (req, res) => {
