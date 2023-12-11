@@ -4,7 +4,7 @@ import 'dotenv/config'
 const endpoint = process.env.API_ENDPOINT
 const endpoint2 = process.env.API_ENDPOINT2
 const amfcode = process.env.AMFCODE
-const linktools = process.env.tools
+const linktools = process.env.TOOLS
 
 export const spamCall = async (req, res) => {
     const body = `target=${req.params.id}`
