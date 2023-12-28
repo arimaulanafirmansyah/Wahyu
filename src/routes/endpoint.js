@@ -8,7 +8,7 @@ export const endpoint = app.get('/', (req,res) => {
         message: 'Welcome to Profile Game Checker API 👋',
         documentation: 'https://documenter.getpostman.com/view/13740929/VUjMnkXK',
         donate: 'https://saweria.co/arimaulana',
-        author: '@amfcode,
-        totalhit: totalVisitors
-    })
+        author: '@amfcode',
+        totalhit: totalVisitors  // Include total visitors count in the response
+    });
 })
