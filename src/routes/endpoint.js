@@ -1,5 +1,5 @@
 import express from 'express'
-
+import { checkaccount, totalVisitors } from './checkaccount.js';
 const app = express()
 
 export const endpoint = app.get('/', (req,res) => {
@@ -8,6 +8,7 @@ export const endpoint = app.get('/', (req,res) => {
         message: 'Welcome to Profile Game Checker API 👋',
         documentation: 'https://documenter.getpostman.com/view/13740929/VUjMnkXK',
         donate: 'https://saweria.co/arimaulana',
-        author: '@amfcode_'
+        author: '@amfcode,
+        totalhit: totalVisitors
     })
 })
