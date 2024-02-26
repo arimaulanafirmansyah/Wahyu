@@ -37,7 +37,7 @@ export const spamCall = async (req, res) => {
 }
 
 export const checkAccountPUBG = async (req, res) => {
-    const body = `api_key=UBDcDDWXMgnW2ELKfZfUsPzFOkEEGuEzi1vSa6kxFYEvuNQMG8iXO4zMS0Wr&target=${req.params.id}&type=pubg`
+    const body = `api_key=AKZk6D5O4SHPh3EqsszxWupUDldg3HLsV83JdY1dTmJr5oTpadn3DPq3Qxnk49A0EenrxxdkXhrEhwhd&type=pubg&user_id=${req.params.id}`
     
     try {
         const pubg = await axios.post(amfcode,body, {
