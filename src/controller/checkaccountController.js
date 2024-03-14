@@ -5,62 +5,6 @@ const endpoint = process.env.API_ENDPOINT
 const endpoint2 = process.env.API_ENDPOINT2
 const amfcode = process.env.AMFCODE
 const linktools = process.env.TOOLS
-const linkanjg = process.env.APIANJG
-
-m = {
- eror: {
- status: false,
- code: 1337,
- creator: creator,
- message: 'Sistem sedang maintenance\ncobalagi nanti!!'
-},
-
- nokey: {
-  status: false,
-  code: 404,
-  creator: creator,
-  message: 'Silahkan masukan parameter apikey'
-},
-
- inkey: {
-  status: false,
-  code: 404,
-  creator: creator,
-  message: `Apikey invalid!!\nGapunya apikey?\n
-silahkan beli di wa.me/`
- }
-}
-
-
-
-export const apianjg = async (req, res) => {
-    const body = `target=${req.params.id}`
-    var apikeyInput = req.query.apikey
-    if(!apikeyInput) return res.json(m.nokey)
-    if(apikeyInput != lock) return res.json(m.inkey)
-    try {
-        const apianjgres = await axios.post(linkanjg, {
-        })
-        const ressapi = apianjgres.data
-        // console.log(ressdana)
-        // if (ressdana.errorCode === 12) {
-        //     res.status(404).json({
-        //         status: 404,
-        //         message: ressdana.errorMsg
-        //     })
-        // }else {
-        //     res.status(200).json({
-        //         status: 200,
-        //           data: ressdana.data.message
-        //     })
-        // }
-       } catch (error) {
-        res.status(504).json({
-            status: 504,
-            message: 'Error Gateway Timeout'
-        })
-    }
-}
 
 export const spamCall = async (req, res) => {
     const body = `target=${req.params.id}`
