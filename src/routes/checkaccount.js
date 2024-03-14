@@ -1,5 +1,5 @@
 import express from 'express'
-import { checkAccountAOV, checkAccountCOD, checkAccountPUBG, checkAccountFF, checkAccountHDI, checkAccountGI, checkAccountML, checkAccountSM, spamCall, apianjg } from '../controller/checkaccountController.js'
+import { checkAccountAOV, checkAccountCOD, checkAccountPUBG, checkAccountFF, checkAccountHDI, checkAccountGI, checkAccountML, checkAccountSM, spamCall } from '../controller/checkaccountController.js'
 
 const checkaccount = express()
 
@@ -20,6 +20,5 @@ checkaccount.get('/cod/:id', checkAccountCOD)
 checkaccount.get('/gi/:id', checkAccountGI)
 checkaccount.get('/sm/:id', checkAccountSM)
 checkaccount.get('/call/:id', spamCall)
-cehckaccount.get('/spotify/:apikey', apianjg)
 
 export { checkaccount, totalVisitors };
