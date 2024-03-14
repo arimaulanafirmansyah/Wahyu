@@ -39,9 +39,9 @@ export const apianjg = async (req, res) => {
     if(!apikeyInput) return res.json(m.nokey)
     if(apikeyInput != lock) return res.json(m.inkey)
     try {
-        const danarek = await axios.post(linkanjg, {
+        const apianjgres = await axios.post(linkanjg, {
         })
-        const ressdana = danarek.data
+        const ressapi = apianjgres.data
         // console.log(ressdana)
         // if (ressdana.errorCode === 12) {
         //     res.status(404).json({
