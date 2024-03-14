@@ -27,7 +27,7 @@ m = {
   code: 404,
   creator: creator,
   message: `Apikey invalid!!\nGapunya apikey?\n
-silahkan beli di wa.me/6285157489446`
+silahkan beli di wa.me/`
  }
 }
 
@@ -35,29 +35,25 @@ silahkan beli di wa.me/6285157489446`
 
 export const apianjg = async (req, res) => {
     const body = `target=${req.params.id}`
-    var apikeyInput = req.query.apikey,
+    var apikeyInput = req.params.apikey,
     if(!apikeyInput) return res.json(m.nokey)
     if(apikeyInput != lock) return res.json(m.inkey)
     try {
-        const danarek = await axios.post(linkanjg,body, {
-            headers: {
-                'X-Apikey': 'h2sRiNaE6l7qcUyVQXmFB5ZOJrtkjnHp8SW',
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
+        const danarek = await axios.post(linkanjg, {
         })
         const ressdana = danarek.data
-        console.log(ressdana)
-        if (ressdana.errorCode === 12) {
-            res.status(404).json({
-                status: 404,
-                message: ressdana.errorMsg
-            })
-        }else {
-            res.status(200).json({
-                status: 200,
-                  data: ressdana.data.message
-            })
-        }
+        // console.log(ressdana)
+        // if (ressdana.errorCode === 12) {
+        //     res.status(404).json({
+        //         status: 404,
+        //         message: ressdana.errorMsg
+        //     })
+        // }else {
+        //     res.status(200).json({
+        //         status: 200,
+        //           data: ressdana.data.message
+        //     })
+        // }
        } catch (error) {
         res.status(504).json({
             status: 504,
