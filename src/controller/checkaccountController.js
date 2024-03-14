@@ -35,7 +35,7 @@ silahkan beli di wa.me/`
 
 export const apianjg = async (req, res) => {
     const body = `target=${req.params.id}`
-    var apikeyInput = req.params.apikey,
+    var apikeyInput = req.query.apikey,
     if(!apikeyInput) return res.json(m.nokey)
     if(apikeyInput != lock) return res.json(m.inkey)
     try {
