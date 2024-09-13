@@ -157,11 +157,8 @@ export const checkAccountML = async (req, res) => {
                 status: 200,
                 response: {
                     game: 'Mobile Legends',
-                    id: mlresult.confirmationFields.userId,
-                    name: mlresult.confirmationFields.username,
-                    data: mlresult,
-                    Create_Country: mlresult.confirmationFields.create_role_country,
-                    lastLogin_Country: mlresult.confirmationFields.this_login_country
+                    id: mlresult.confirmationFields.userIdAndZoneId,
+                    name: mlresult.confirmationFields.username
                 }
             })
         }
